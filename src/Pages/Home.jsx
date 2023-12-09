@@ -6,6 +6,7 @@ import Sky from '../models/sky';
 import Bird from '../models/bird';
 import Plane from '../models/Plane';
 import HomeInfo from '../Components/HomeInfo';
+import Tower from '../models/tower';
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -18,8 +19,8 @@ const Home = () => {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [1.2, 1.2, 1.2];
-      screenPosition = [0,-0.8, 0];
+      screenScale = [1.3, 1.3, 1.3];
+      screenPosition = [0,-1.1, 1.2];
     }
 
     return [screenScale, screenPosition];
@@ -31,18 +32,30 @@ const Home = () => {
       screenScale = [0.027, 0.027, 0.027]; 
       screenPosition = [0, -6.5, -43.4];
     } else {
-      screenScale = [0.027, 0.027, 0.027];
+      screenScale = [0.0291, 0.0291, 0.0291];
       screenPosition = [0, -6.5, -43.4];
     }
   
     return [screenScale, screenPosition];
   };
+  const adjustTowerForScreenSize = () => {
+    let TscreenScale, TscreenPosition;
   
+    if (window.innerWidth < 768) {
+      TscreenScale = [0.027, 0.027, 0.027]; 
+      TscreenPosition = [0, -6.5, -43.4];
+    } else {
+      TscreenScale = [0.7,0.7, 0.7];
+      TscreenPosition = [80, 0, -120];
+    }
+  
+    return [TscreenScale, TscreenPosition];
+  };
 
   const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
 
   const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
-
+  const [TscreenScale, TscreenPosition] =adjustTowerForScreenSize();
   return (
     <section className='w-full h-screen relative'>
        <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
@@ -78,6 +91,12 @@ const Home = () => {
             rotation={[0.1, -6.3, 0]}
             scale={islandScale}
           />
+          <Tower
+          isRotating={isRotating} 
+           position={TscreenPosition}
+           rotation={[0.1, -6.3, 0]}
+           scale={TscreenScale}
+           />
           <Plane
             isRotating={isRotating}
             position={biplanePosition}

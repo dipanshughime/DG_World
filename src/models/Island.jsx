@@ -5,6 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import islandScene from "../assets/3d/myIsland.glb";
 
+
 const Island = ({ isRotating,
   setIsRotating,
   setCurrentStage,
@@ -130,7 +131,10 @@ const Island = ({ isRotating,
         case normalizedRotation >= 3.35 && normalizedRotation <= 3.75:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 0.65 && normalizedRotation <= 1.05:
+        case normalizedRotation >= 1.95 && normalizedRotation <= 2.75:
+          setCurrentStage(6);
+          break;
+        case normalizedRotation >= 0.65 && normalizedRotation <= 1.35:
           setCurrentStage(5);
           break;
         default:
@@ -141,13 +145,13 @@ const Island = ({ isRotating,
   return (
     <a.group ref={islandRef} {...props}>
        <group rotation={[-Math.PI / 2, 0, 0]}>
-      <mesh
+      {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_2.geometry}
           material={materials.BALOON}
-        />
-        <mesh
+        /> */}
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_3.geometry}
@@ -158,7 +162,8 @@ const Island = ({ isRotating,
           receiveShadow
           geometry={nodes.Object_4.geometry}
           material={materials.BALOON_CURVE}
-        />
+        /> */}
+      
         <mesh
           castShadow
           receiveShadow
@@ -171,30 +176,30 @@ const Island = ({ isRotating,
           geometry={nodes.Object_6.geometry}
           material={materials.ISLAND_BASE_SHADOW}
         />
-        <mesh
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_7.geometry}
           material={materials.base_island_additional_pipes}
-        />
-        <mesh
+        /> */}
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_8.geometry}
           material={materials["base_island_additional_pipes_BEAM.001"]}
-        />
-        <mesh
+        /> */}
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_9.geometry}
           material={materials.base_island_additional_pipes_transarent}
-        />
-        <mesh
+        /> */}
+        {/* <mesh
           castShadow
           receiveShadow
           geometry={nodes.Object_10.geometry}
           material={materials.curve_Pipe}
-        />
+        /> */}
         <mesh
           castShadow
           receiveShadow
