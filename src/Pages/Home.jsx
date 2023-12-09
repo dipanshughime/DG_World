@@ -14,13 +14,12 @@ const Home = () => {
   const adjustBiplaneForScreenSize = () => {
     let screenScale, screenPosition;
 
-    // If screen width is less than 768px, adjust the scale and position
     if (window.innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [2.7, 2.7, 2.7];
-      screenPosition = [0,-2, -4];
+      screenScale = [1.2, 1.2, 1.2];
+      screenPosition = [0,-0.8, 0];
     }
 
     return [screenScale, screenPosition];
@@ -29,11 +28,9 @@ const Home = () => {
     let screenScale, screenPosition;
   
     if (window.innerWidth < 768) {
-      // Scale down the island for smaller screens
-      screenScale = [0.5, 0.5, 0.5]; // Adjust the scale factor as needed
+      screenScale = [0.027, 0.027, 0.027]; 
       screenPosition = [0, -6.5, -43.4];
     } else {
-      // Use the default scale for larger screens
       screenScale = [0.027, 0.027, 0.027];
       screenPosition = [0, -6.5, -43.4];
     }
@@ -78,7 +75,7 @@ const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
             position={islandPosition}
-            rotation={[0.1, 6.1, 0]}
+            rotation={[0.1, -6.3, 0]}
             scale={islandScale}
           />
           <Plane

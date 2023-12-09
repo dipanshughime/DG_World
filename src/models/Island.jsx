@@ -81,7 +81,6 @@ const Island = ({ isRotating,
     }
   };
   useEffect(() => {
-    // Add event listeners for pointer and keyboard events
     const canvas = gl.domElement;
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
@@ -89,7 +88,6 @@ const Island = ({ isRotating,
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
-    // Remove event listeners when component unmounts
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerup", handlePointerUp);
@@ -120,17 +118,20 @@ const Island = ({ isRotating,
 
       // Set the current stage based on the island's orientation
       switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
-          setCurrentStage(4);
+        case normalizedRotation >= 5.45 && normalizedRotation <= 6.85:
+          setCurrentStage(1);
           break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
-          setCurrentStage(3);
-          break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+        case normalizedRotation >= 4.75 && normalizedRotation <= 5.15:
           setCurrentStage(2);
           break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
-          setCurrentStage(1);
+        case normalizedRotation >= 3.95 && normalizedRotation <= 4.25:
+          setCurrentStage(3);
+          break;
+        case normalizedRotation >= 3.35 && normalizedRotation <= 3.75:
+          setCurrentStage(4);
+          break;
+        case normalizedRotation >= 0.65 && normalizedRotation <= 1.05:
+          setCurrentStage(5);
           break;
         default:
           setCurrentStage(null);
@@ -138,7 +139,6 @@ const Island = ({ isRotating,
     }
   });
   return (
-    // {Island 3D model from: https://sketchfab.com/3d-models/foxs-islands-163b68e09fcc47618450150be7785907}
     <a.group ref={islandRef} {...props}>
        <group rotation={[-Math.PI / 2, 0, 0]}>
       <mesh
