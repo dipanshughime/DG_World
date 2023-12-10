@@ -9,7 +9,6 @@ const Tower = ({ isRotating, ...props }) => {
   const { nodes, materials, animations } = useGLTF(tower);
   const { actions } = useAnimations(animations, group);
 
-  // Update rotation in each frame
   useFrame((_, delta) => {
     if (isRotating) {
       group.current.rotation.y += 0.25 * delta;
@@ -60,7 +59,6 @@ const Tower = ({ isRotating, ...props }) => {
   );
 };
 
-// Preload the GLTF model
 useGLTF.preload("/flying_tower.glb");
 
 export default Tower;

@@ -24,44 +24,33 @@ const Island = ({ isRotating,
     event.preventDefault();
     setIsRotating(true);
 
-    // Calculate the clientX based on whether it's a touch event or a mouse event
     const clientX = event.touches ? event.touches[0].clientX : event.clientX;
 
-    // Store the current clientX position for reference
     lastX.current = clientX;
   };
 
-  // Handle pointer (mouse or touch) up event
   const handlePointerUp = (event) => {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(false);
   };
 
-  // Handle pointer (mouse or touch) move event
   const handlePointerMove = (event) => {
     event.stopPropagation();
     event.preventDefault();
     if (isRotating) {
-      // If rotation is enabled, calculate the change in clientX position
       const clientX = event.touches ? event.touches[0].clientX : event.clientX;
 
-      // calculate the change in the horizontal position of the mouse cursor or touch input,
-      // relative to the viewport's width
       const delta = (clientX - lastX.current) / viewport.width;
 
-      // Update the island's rotation based on the mouse/touch movement
       islandRef.current.rotation.y += delta * 0.01 * Math.PI;
 
-      // Update the reference for the last clientX position
       lastX.current = clientX;
 
-      // Update the rotation speed
       rotationSpeed.current = delta * 0.01 * Math.PI;
     }
   };
 
-  // Handle keydown events
   const handleKeyDown = (event) => {
     if (event.key === "ArrowLeft") {
       if (!isRotating) setIsRotating(true);
@@ -98,7 +87,6 @@ const Island = ({ isRotating,
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
-  // This function is called on each frame update
   useFrame(() => {
     if (!isRotating) {
       
@@ -110,14 +98,12 @@ const Island = ({ isRotating,
 
       islandRef.current.rotation.y += rotationSpeed.current;
     } else {
-      // When rotating, determine the current stage based on island's orientation
       const rotation = islandRef.current.rotation.y;
 
      
       const normalizedRotation =
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-      // Set the current stage based on the island's orientation
       switch (true) {
         case normalizedRotation >= 5.45 && normalizedRotation <= 6.85:
           setCurrentStage(1);
